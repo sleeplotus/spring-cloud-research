@@ -10,15 +10,10 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
     healthcheck:
       enabled: true
-    lease:
-      duration: 5
 
 spring:
   application:
     name: api-gateway
-
-management:
-  security:
 
 logging:
   level:

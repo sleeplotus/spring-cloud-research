@@ -27,18 +27,18 @@ public class EmployeeController {
         this.restTemplate = restTemplate;
     }
 
-    @RequestMapping(value = "/employeeDetails/{employeeid}", method = RequestMethod.GET)
+    @RequestMapping(value = "/employeeDetails/{employeeId}", method = RequestMethod.GET)
     @HystrixCommand(fallbackMethod = "fallbackMethod")
-    public String getStudents(@PathVariable int employeeid) {
-        log.debug("Getting Employee details for " + employeeid);
+    public String getStudents(@PathVariable int employeeId) {
+        log.debug("Getting Employee details for " + employeeId);
 
-        String response = restTemplate.exchange("http://employee-service/findEmployeeDetails/{employeeid}",
+        String response = restTemplate.exchange("http://employee-service/findEmployeeDetails/{employeeId}",
                 HttpMethod.GET, null, new ParameterizedTypeReference<String>() {
-                }, employeeid).getBody();
+                }, employeeId).getBody();
 
         log.debug("Response Body " + response);
 
-        return "Employee Id -  " + employeeid + " [ Employee Details " + response + " ]";
+        return "Employee Id -  " + employeeId + " [ Employee Details " + response + " ]";
     }
 
     public String fallbackMethod(int employeeId) {

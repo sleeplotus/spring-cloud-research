@@ -3,22 +3,17 @@ server:
 
 eureka:
   instance:
-    leaseRenewalIntervalInSeconds: 5
-    leaseExpirationDurationInSeconds: 2
+    leaseRenewalIntervalInSeconds: 5          # 租约续期时间间隔（默认30秒）
+    leaseExpirationDurationInSeconds: 2       # 租约持续时间（默认90秒）
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
     healthcheck:
-      enabled: true
-    lease:
-      duration: 5
+      enabled: true         # 开启健康检查（需要spring-boot-starter-actuator依赖
 
 spring:
   application:
     name: employee-service
-
-management:
-  security:
 
 logging:
   level:

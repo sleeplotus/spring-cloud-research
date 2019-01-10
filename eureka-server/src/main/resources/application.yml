@@ -9,9 +9,9 @@ eureka:
       defaultZone: ${DISCOVERY_URL:http://localhost:8761}/eureka/
   instance:
     leaseRenewalIntervalInSeconds: 10
-
-management:
-  security:
+  #server:
+    #enable-self-preservation: false          # 设为false，关闭Eureka的自我保护机制，不建议在生产环境使用
+    #eviction-interval-timer-in-ms: 4000      # 无效实例清理间隔（单位毫秒，默认是60*1000）
 
 spring:
   boot:
