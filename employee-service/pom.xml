@@ -6,7 +6,6 @@
         <groupId>com.tiger</groupId>
         <artifactId>spring-cloud-research</artifactId>
         <version>1.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <artifactId>employee-service</artifactId>
     <version>1.0.0</version>
@@ -60,6 +59,38 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.2.0</version>
+                <executions>
+                    <execution>
+                        <id>build-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <imageName>${project.artifactId}</imageName>
+                    <!-- To use a Dockerfile, you must specify the dockerDirectory element. If specified, the baseImage, maintainer, cmd and entryPoint elements will be ignored. The contents of the dockerDirectory will be copied into ${project.build.directory}/docker. Use the resources element to copy additional files, such as the service's jar file. -->
+                    <dockerDirectory>docker</dockerDirectory>
+                    <!-- Optionally overwrite existed tags every time image is built with docker:build -->
+                    <forceTags>true</forceTags>
+                    <imageTags>
+                        <imageTag>${project.version}</imageTag>
+                    </imageTags>
+                    <resources>
+                        <!-- Use the resources element to copy additional files, such as the service's jar file -->
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
             </plugin>
         </plugins>
     </build>

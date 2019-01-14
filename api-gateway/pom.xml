@@ -6,7 +6,6 @@
         <groupId>com.tiger</groupId>
         <artifactId>spring-cloud-research</artifactId>
         <version>1.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <artifactId>api-gateway</artifactId>
     <version>1.0.0</version>
